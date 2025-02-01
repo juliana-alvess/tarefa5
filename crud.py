@@ -28,10 +28,31 @@ def apagar(id):
 
 # Exemplo de uso
 if __name__ == "__main__":
+    # Criação de uma tabela de exemplo
+    conexao.execute('''CREATE TABLE IF NOT EXISTS tabela (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        campo1 TEXT NOT NULL,
+                        campo2 TEXT NOT NULL)''')
+
     dados = {'campo1': 'valor1', 'campo2': 'valor2'}
+
+    # Inserir
     inserir(dados)
+    print("Após Inserir:")
     print(listar())
+
+    # Procurar pelo ID
+    print("Procurar pelo ID 1:")
     print(procurar_por_id(1))
+
+    # Alterar
     alterar(1, {'campo1': 'novo_valor1', 'campo2': 'novo_valor2'})
+    print("Após Alterar:")
+    print(listar())
+
+    # Apagar
     apagar(1)
+    print("Após Apagar:")
+    print(listar())
+
     conexao.close()
